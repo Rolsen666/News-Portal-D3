@@ -1,0 +1,24 @@
+<!--  наследуемся от шаблона default.html, который мы создавали для flatpages -->
+{% extends 'flatpages/default.html' %}
+
+{% load custom_filters %}
+
+<!-- Название у нас будет News -->
+{% block title %}
+News
+{% endblock title %}
+
+<!-- В контенте на странице мы выводим все новости -->
+{% block content %}
+<h1>Новость</h1>
+<h3>Дата публикации:{{ news.dateCreation | date:'d M Y'}}</h3>
+<hr>
+{% if news %}
+    <h3 align="center">Заголовок:</h3>
+    <h3 align="center">{{ news.title | censor}}</h3>
+    <h3>Статья:</h3>
+    <p>{{ news.text | censor}}</p>
+{% else %}
+    <h2>Новостей нет!</h2>
+{% endif %}
+{% endblock content %}
